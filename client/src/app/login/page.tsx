@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -23,7 +24,6 @@ export default function Login() {
       );
 
       login();
-
       router.push("/users");
     } catch (error) {
       console.error(error);
@@ -56,6 +56,14 @@ export default function Login() {
           <Button className="w-full bg-black" onClick={handleLogin}>
             Login
           </Button>
+
+          {/* New section here */}
+          <div className="text-center text-sm mt-4">
+            Don&apos;t have an account?{" "}
+            <Link href="/signup" className="text-purple-700 font-semibold hover:underline">
+              Sign Up
+            </Link>
+          </div>
         </CardContent>
       </Card>
     </div>

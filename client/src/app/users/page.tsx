@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import AuthGuard from "@/AuthGuard";
 
 export default function UsersPage() {
   const [users, setUsers] = useState<any[]>([]);
@@ -78,7 +79,8 @@ export default function UsersPage() {
     }
   };
 
-  return (
+  return ( 
+    <AuthGuard>
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 py-10 px-4">
       <div className="flex justify-center mb-10">
         <Link
@@ -136,5 +138,6 @@ export default function UsersPage() {
         })}
       </div>
     </div>
+    </AuthGuard>
   );
 }

@@ -15,6 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import AuthGuard from "@/AuthGuard";
 
 function timeAgo(dateString: string) {
   const date = new Date(dateString);
@@ -89,7 +90,8 @@ export default function Timeline() {
     }
   };
 
-  return (
+  return ( 
+    <AuthGuard>
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 py-10 px-4">
       <div className="max-w-4xl mx-auto mb-8 flex justify-between items-center">
         <h1 className="text-4xl font-extrabold text-gray-800">
@@ -208,5 +210,6 @@ export default function Timeline() {
         ))}
       </div>
     </div>
+    </AuthGuard>
   );
 }

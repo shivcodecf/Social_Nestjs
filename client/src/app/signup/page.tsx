@@ -3,6 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -86,6 +87,14 @@ export default function Signup() {
           >
             Sign Up
           </Button>
+
+          {/* New section here */}
+          <div className="text-center text-sm mt-4">
+            Already have an account?{" "}
+            <Link href="/login" className="text-purple-700 font-semibold hover:underline">
+              Login
+            </Link>
+          </div>
         </CardContent>
       </Card>
     </div>
