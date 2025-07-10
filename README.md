@@ -34,3 +34,19 @@ A simple social media platform built with **NestJS** (Backend) and **Next.js** (
 
 ```bash
 npm install
+
+```
+
+## Demo  
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/932027bd-4d45-4fa4-96e9-d75f13f2deae" />                                                       
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/24444425-d13b-4f37-a47e-40b658e2cf83" />                     
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/999bbf8e-c104-4df8-bdae-185e2a7656e6" />  
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9130b75a-6b22-4cf4-a32c-a7d64e604fcb" />     
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/dae9c05e-f3ab-4e5f-a74d-3883233b52b7" />
+
+
+
+
+
+
