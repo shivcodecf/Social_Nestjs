@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/context/AuthContext";
+import background from "../../../public/background2.jpeg";
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -18,13 +19,14 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       await axios.post(
-        "http://localhost:3000/auth/login",
+        "http://localhost:3001/auth/login",
         { email, password },
         { withCredentials: true }
       );
 
       login();
       router.push("/users");
+      
     } catch (error) {
       console.error(error);
       alert("Login failed");
@@ -32,8 +34,15 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <Card className="w-full max-w-md">
+    <div
+      className="min-h-screen flex items-center justify-center px-4"
+      style={{
+        backgroundImage: `url(${background.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <Card className="w-full max-w-md bg-white bg-opacity-80 backdrop-blur-md">
         <CardHeader>
           <CardTitle className="text-center text-2xl">Login</CardTitle>
         </CardHeader>
@@ -53,11 +62,10 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <Button className="w-full bg-black" onClick={handleLogin}>
+          <Button className="w-full bg-pink-500 hover:bg-pink-700" onClick={handleLogin}>
             Login
           </Button>
 
-          {/* New section here */}
           <div className="text-center text-sm mt-4">
             Don&apos;t have an account?{" "}
             <Link href="/signup" className="text-purple-700 font-semibold hover:underline">

@@ -18,7 +18,9 @@ export class PostsService {
       description: dto.description,
       author: username,
     });
+
     return post.save();
+
   }
 
   async getTimelinePosts(username: string) {
@@ -30,9 +32,10 @@ export class PostsService {
     }
 
     // Include user's own posts + those of users they follow
+    
     return this.postModel
       .find({ author: { $in: [username, ...user.following] } })
       .sort({ createdAt: -1 });
   }
-}
 
+}

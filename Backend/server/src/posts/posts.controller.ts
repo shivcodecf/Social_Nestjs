@@ -18,12 +18,21 @@ export class PostsController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async createPost(@Body() body: CreatePostDto, @Req() req: RequestWithUser) {
+
     return this.postsService.createPost(req.user.username, body);
+    
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('timeline')
   async getTimeline(@Req() req: RequestWithUser) {
+
     return this.postsService.getTimelinePosts(req.user.username);
+
   }
 }
+
+
+
+
+

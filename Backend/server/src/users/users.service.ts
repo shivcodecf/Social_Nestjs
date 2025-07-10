@@ -48,4 +48,5 @@ export class UsersService {
   async getUserProfile(username: string) {
     return this.userModel.findOne({ username }).select('-password');
   }
+  
 }

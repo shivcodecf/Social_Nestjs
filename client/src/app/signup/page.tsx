@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "react-hot-toast";
+import background from "../../../public/background2.jpeg";
 
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -25,7 +26,7 @@ export default function Signup() {
     try {
       console.log({ username, email, password });
       await axios.post(
-        "http://localhost:3000/auth/signup",
+        "http://localhost:3001/auth/signup",
         { username, email, password },
         {
           withCredentials: true,
@@ -40,7 +41,13 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100"
+      style={{
+        backgroundImage: `url(${background.src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <Card className="w-full max-w-md p-6">
         <CardHeader>
           <CardTitle className="text-center text-2xl font-bold">
@@ -83,7 +90,7 @@ export default function Signup() {
 
           <Button
             onClick={handleSignup}
-            className="w-full"
+            className="w-full bg-pink-600 hover:bg-pink-800"
           >
             Sign Up
           </Button>

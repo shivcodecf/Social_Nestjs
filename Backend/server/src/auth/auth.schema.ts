@@ -16,6 +16,9 @@ export class User {
 
   @Prop({ type: [String], default: [] })
   following: string[];
+
+   @Prop({ type: String, default: null })
+  refreshToken: string | null;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

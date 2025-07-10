@@ -16,9 +16,7 @@ import { RequestWithUser } from '../auth/request-with-user.interface';
 
 @Controller('users')
 export class UsersController {
-  constructor(
-    @InjectModel(User.name) private userModel: Model<UserDocument>,
-  ) {}
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   @UseGuards(JwtAuthGuard)
   @Get()
@@ -39,14 +37,13 @@ export class UsersController {
     }
 
     return me;
+
   }
 
   @UseGuards(JwtAuthGuard)
   @Get(':username')
   async getUser(@Param('username') username: string) {
-    const user = await this.userModel
-      .findOne({ username })
-      .select('-password');
+    const user = await this.userModel.findOne({ username }).select('-password');
 
     if (!user) {
       throw new NotFoundException('User not found');
@@ -65,17 +62,19 @@ export class UsersController {
       throw new BadRequestException('You cannot follow yourself.');
     }
 
-    const me = await this.userModel.findOne({ username: req.user.username });
-    if (!me) {
+    const followUser = await this.userModel.findOne({ username: req.user.username });
+
+    if (! followUser) {
       throw new NotFoundException('Current user not found.');
     }
 
-    if (!me.following.includes(username)) {
-      me.following.push(username);
-      await me.save();
+    if (! followUser.following.includes(username)) {
+       followUser.following.push(username);
+       await  followUser.save();
     }
 
     return { message: `Followed ${username}` };
+    
   }
 
   @UseGuards(JwtAuthGuard)
@@ -88,13 +87,15 @@ export class UsersController {
       throw new BadRequestException('You cannot unfollow yourself.');
     }
 
-    const me = await this.userModel.findOne({ username: req.user.username });
-    if (!me) {
+    const unfollowUser = await this.userModel.findOne({ username: req.user.username });
+
+    if (!unfollowUser) {
       throw new NotFoundException('Current user not found.');
     }
 
-    me.following = me.following.filter((u) => u !== username);
-    await me.save();
+    unfollowUser.following = unfollowUser.following.filter((u) => u !== username);
+
+    await unfollowUser.save();
 
     return { message: `Unfollowed ${username}` };
   }
